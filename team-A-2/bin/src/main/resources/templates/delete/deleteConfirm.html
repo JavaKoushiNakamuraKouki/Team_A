@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+
+<head layout:fragment="head">
+	<title layout:fragment="title">社員情報削除（確認）</title>
+
+</head>
+
+<body>
+
+	<div layout:fragment="pageTitle" div class="pageTitle">
+		<h2>社員情報削除（確認）</h2>
+	</div>
+
+	<div layout:fragment="content" class="content">
+
+		<div class="form-wrapper">
+
+			
+			<form th:action="@{/delete/complete}" method="post">
+
+				<div class="input-container">
+					<div class="delete-top">
+						<h3>削除対象</h3>
+					</div>
+
+					<input type="hidden" name="returnUrl" th:value="${returnUrl}" />
+
+					<div class="form-input">
+						
+						<div th:each="employee : ${employeeList}" class="delete">
+							<div class="input-item">
+								<label>会社ID</label>
+								<input type="number" name="empIdList" th:value="${employee.empId}" readonly>
+								<span>
+									<p th:text="${employee.empName}"></p>
+								</span>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="input-msg">
+						<p>
+							こちらを削除します。よろしいですか？
+						</p>
+					</div>
+				</div>
+				<div class="form-buttons">
+					<div><input type="submit" value="削除" th:formaction="@{/delete/complete}"></div>
+					<div><input type="submit" value="戻る" formaction="/delete/back" formmethod="post" formnovalidate>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+	<div th:if="${notFoundIds != null and notFoundIds.size() > 0}">
+		<h3>以下のIDは存在しません</h3>
+		<ul>
+			<li th:each="id : ${notFoundIds}" th:text="${id}"></li>
+		</ul>
+	</div>
+
+
+
+</body>
+
+</html>
