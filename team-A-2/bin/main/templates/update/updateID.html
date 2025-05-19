@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head layout:fragment="head">
+    <title layout:fragment="title">社員情報更新(入力)</title>
+</head>
+
+<body>
+
+    <div layout:fragment="pageTitle" div class="pageTitle">
+        <h2>社員情報更新（入力）</h2>
+    </div>
+
+    <div layout:fragment="content" class="content">
+        <div class="form-wrapper">
+
+            <div class="error">
+                <p th:if="${error}" th:text="${error}"></p>
+            </div>
+
+            <form th:action="@{/update}" th:object="${employeeInfo}" method="post">
+                <div class="input-container">
+                    <div class="form-input">
+                        <div>
+                            <label for="empID" class="required">会社ID</label>
+                            <input type="number" th:field="*{empId}" required>
+                        </div>
+                    </div>
+
+                    <div class="input-msg">
+                    </div>
+
+                </div>
+
+                <div class="form-buttons">
+                    <div><input type="submit" value="ID検索" th:formaction="@{/update}" formmethod="post"></div>
+                    <div><input type="submit" value="メニュー" th:formaction="@{/main}" formmethod="get" formnovalidate>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

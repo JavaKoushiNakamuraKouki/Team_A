@@ -1,0 +1,459 @@
+/* 共通部分 */
+/* 
+使用カラー
+#FFFFFF メイン
+#251E1C　文字
+#7B8A9C　アクセント
+#9E9E9F
+#DCDCDC */
+
+.wrapper {
+    color: #251E1C;
+    min-width: 800px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    border-bottom: #251E1C solid;
+    min-height: 80px;
+}
+
+.pageTitle {
+    font-size: 1.5em;
+    white-space: nowrap;
+    width: 50%;
+    color: #7B8A9C;
+    padding: 0 5%;
+    margin-top: 1em
+}
+
+.loginInfo {
+    width: 50%;
+    /* background-color: aqua; */
+    text-align: right;
+    color: #251E1C;
+    padding: 0 5%;
+    margin-top: 1em
+}
+
+.content {
+    min-height: 75vh;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    /* background-color: crimson; */
+}
+
+.footer {
+    height: 5vh;
+    padding: 0 5%;
+    text-align: right;
+    color: #9E9E9F;
+    /* background-color: aqua; */
+}
+
+/* トップページ */
+.content.main {
+    align-items: center;
+}
+
+.main {
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
+    width: 60%;
+}
+
+.sites {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DCDCDC;
+    border: 2px solid #7B8A9C;
+    border-radius: 8px;
+    height: 15％;
+    margin: 20px 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: #251E1C;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.sites:hover {
+    background-color: #C0C0C0;
+}
+
+/* エラー */
+.error {
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error p {
+    font-size: 0.8em;
+    text-align: center;
+    color: red;
+    margin: 0;
+}
+
+/* 共通フォーム */
+.form-wrapper {
+    width: 100%;
+}
+
+.form {
+    width: 100%;
+}
+
+.input-container {
+    width: 90%;
+    border-bottom: #251E1C solid 0.5px;
+    margin: 0 auto;
+}
+
+.form-input {
+    padding: 30px 0;
+    min-height: 50vh;
+    width: 50%;
+    min-width: 480px;
+    margin: 0 auto;
+}
+
+.form-input div {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.form-input label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.form-input .required::after {
+    content: "＊";
+    color: red;
+    margin-left: 5px;
+}
+
+.form-input input[type="text"],
+.form-input input[type="number"],
+.form-input input[type="password"],
+.form-input input[type="date"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-input input[readonly] {
+    background-color: #DCDCDC;
+}
+
+.input-msg {
+    height: 2em;
+    align-items: end;
+    width: 50%;
+    margin: 15px auto 5px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    margin: 15Px auto;
+}
+
+.form-buttons div {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.form-buttons input[type="submit"] {
+    background-color: #7B8A9C;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-buttons div :hover {
+    background-color: #C0C0C0;
+}
+
+/* 処理完了画面 */
+
+.message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    width: 50%;
+    min-width: 480px;
+    padding: 30px auto;
+    margin: 0 auto;
+}
+
+.message p {
+    font-size: 1.8em;
+}
+
+.completed-msg span {
+    font-size: 1.2em;
+}
+
+.form-buttons a {
+    background-color: #7B8A9C;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+/* 削除画面ボタン */
+.delete-top {
+    margin: 0 auto;
+    height: 2em;
+    width: 50%;
+    min-width: 480px;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-button button {
+    margin: 5px;
+    background-color: #C0C0C0;
+    border: #9E9E9F;
+    width: 75px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.delete-button button:hover {
+    background-color: #9E9E9F;
+}
+
+.delete {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+
+}
+
+.delete .input-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.delete .input-item span {
+    height: 2em;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+
+/* 検索画面 */
+.upper-area {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 15px;
+    min-height: 250px;
+    border-bottom: #251E1C solid 0.5px;
+}
+
+.upper-bottun {
+    height: 5vh;
+    display: flex;
+    align-items: flex-start;
+}
+
+.upper-bottun a {
+    background-color: #C0C0C0;
+    text-decoration: none;
+    color: #fff;
+    width: 100px;
+    height: 1.5em;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.upper-bottun a:hover {
+    background-color: #251E1C;
+}
+
+.search-box {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    min-width: 800px;
+    max-width: 1500px;
+    height: 15vh;
+    margin: 15px auto;
+    height: 100%;
+}
+
+.column {
+    height: 100%;
+    width: 40%;
+}
+
+.input-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.between input {
+    width: 80%;
+}
+
+.between span {
+    text-align: center;
+    margin: 3px;
+}
+
+
+
+.column input[type="text"],
+.column input[type="number"],
+.column input[type="password"],
+.column input[type="date"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.column label {
+    width: 80px;
+}
+
+
+
+.column-bottun {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.column-bottun div {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.column-bottun input {
+    width: 100%;
+    height: 3em;
+    margin: 10px auto 5px;
+    border: 1px solid #DCDCDC;
+    background-color: #FFF;
+    border-radius: 4px;
+}
+
+#search-button {
+    background-color: #7B8A9C;
+    font-weight: bold;
+    color: #FFF;
+}
+
+#search-button:hover {
+    background-color: #DCDCDC;
+    border: solid #7B8A9C;
+    color: #7B8A9C;
+}
+
+.column-bottun input:hover {
+    background-color: #DCDCDC;
+    color: white;
+}
+
+/* 検索下方画面 */
+.lower-area {
+    margin: 15px;
+    height: 30vh;
+    min-height: auto;
+    display: flex;
+}
+
+.search-result {
+    width: 85%;
+    margin: 0 10px;
+}
+
+.lower-button {
+    width: 15%;
+}
+
+.lower-button div {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.lower-button button {
+    width: 100%;
+    height: 2em;
+    margin: 0 auto;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+}
+
+.lower-button button:hover {
+    background-color: #DCDCDC;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 800px;
+    border: solid 1.5px #251E1C;
+}
+
+th {
+    height: 1em;
+    color: #FFF;
+    letter-spacing: 0.1em;
+    background-color: #7B8A9C;
+    border: solid 1.5px #251E1C;
+    padding: 5px 8px;
+}
+
+td {
+    border: solid 1px #251E1C;
+    padding: 10px 10px;
+    text-align: center;
+    background-color: #FFF;
+}

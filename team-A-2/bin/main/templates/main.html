@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+
+<head>
+	<title layout:title="トップメニュー">トップメニュー</title>
+</head>
+
+<body>
+
+	<div layout:fragment="pageTitle" class="pageTitle">
+		<h2>トップメニュー</h2>
+	</div>
+
+	<div layout:fragment="content" class="content">
+
+		<div class="error">
+
+		</div>
+
+		<div class="main">
+
+			<a class="sites" th:href="@{/search}">社員情報検索</a>
+			<a class="sites" th:href="@{/delete}">社員情報削除</a>
+			<a class="sites" th:href="@{/registration}">社員情報登録</a>
+			<a class="sites" th:href="@{/update}">社員情報更新</a>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
