@@ -1,0 +1,13 @@
+CREATE TABLE employeeInfo(
+empId INT AUTO_INCREMENT NOT NULL primary key,
+empName VARCHAR (10) NOT NULL,
+age INT NOT NULL,
+pass VARCHAR(20) CHECK (
+char_length(pass) >= 8 AND 
+pass REGEXP '[A-Z]' AND
+pass REGEXP '[a-z]' AND
+pass REGEXP '[0-9]'    
+),
+startDate DATE,
+endDate DATE
+    );
