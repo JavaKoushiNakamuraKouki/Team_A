@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+
+
+<body>
+
+	<div layout:fragment="pageTitle" div class="pageTitle">
+		<h2>社員情報更新（完了）</h2>
+	</div>
+
+	<div layout:fragment="content" class="content">
+		<div class="form-wrapper">
+			<div class="error">
+				<p th:if="${error}" th:text="${error}"></p>
+			</div>
+
+			<div class="input-container">
+
+				<div class="message">
+					<div class="completed-msg">
+						<p>社員情報の更新が完了しました。</p>
+					</div>
+				</div>
+				<div class="input-msg">
+
+				</div>
+			</div>
+
+
+			<div class="form-buttons">
+				<div>
+					<a th:href="@{/main}" class="form-buttons">メニュー</a>
+				</div>
+				<div>
+					<a th:href="@{/search}" class="form-buttons">検索</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

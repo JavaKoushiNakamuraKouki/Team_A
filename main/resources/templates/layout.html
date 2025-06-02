@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title>社員管理システム</title>
+</head>
+
+<body>
+
+	<div class="wrapper">
+
+		<div class="header">
+			<div class="pageTitle" layout:fragment="pageTitle">
+				<h2>デフォルトタイトル</h2>
+			</div>
+
+			<div class="loginInfo">
+				<div class=loginUser>
+					<span th:if="${session.loginUser != null}"
+						th:text="${session.loginUser.empName+' さん'} ">ユーザー名</span>
+					<!--テスト用 -->
+					<!-- <span th:text="${session.loginUser != null ? session.loginUser.empName + ' さん' : 'ゲスト さん'}"></span> -->
+					<!-- <span>
+						ゲスト	
+					</span> -->
+				</div>
+
+				<div class=loginTime>
+					<span th:text=" ${session.loginTime}">ログイン時刻</span>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="content" layout:fragment="content">
+
+		</div>
+
+		<div class="footer">
+			<p>© 2025 JAVA TeamA</p>
+		</div>
+	</div>
+
+</body>
+
+</html>
