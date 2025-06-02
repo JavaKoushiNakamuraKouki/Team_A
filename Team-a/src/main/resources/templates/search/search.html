@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+
+<head>
+	<title>社員情報検索</title>
+</head>
+
+<body>
+		<div class="header">
+			<div class="pageTitle" layout:fragment="pageTitle">
+				<h2>社員情報検索</h2>
+			</div>
+
+			<div class="loginInfo">
+				<div class=loginUser>
+					<span th:if="${session.loginUser != null}"
+						th:text="${session.loginUser.empName+' さん'} ">ユーザー名</span>
+<!-- 					<a th:if="${session.loginUser == null}" th:href="@{/login}">ログイン</a> -->
+				</div>
+
+				<div class=loginTime>
+					<span th:text=" ${session.loginTime}">ログイン時刻</span>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="content" layout:fragment="content">
+
+		</div>
+	<div layout:fragment="content">
+		<div>
+		<form th:action="@{/main}" method="get">
+    		<button type="submit">メニュー</button>
+		</form>
+
+		<form th:action="@{/registration}" method="get">
+   			 <button type="submit">登録</button>
+		</form>
+
+		</div>
+	<div class="error" th:if="${errorMessage}">
+    		<p th:text="${errorMessage}" style="color: red;"></p>
+	</div>
+
+		<form id="searchForm" th:action="@{/search}" th:object="${employeeForm}" method="post">
+		<!-- ▼ 単項目チェックエラー表示（SpringのBindingResult用） -->
+	<div th:if="${#fields.hasErrors('*')}">
+    	<ul style="color: red;">
+        	<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+    	</ul>
+	</div>
+
+		<!-- ▼ 相関チェックエラー表示（コントローラーのcustomErrors用） -->
+	<div th:if="${customErrors != null}">
+    	<ul style="color: red;">
+        	<li th:each="err : ${customErrors}" th:text="${err}"></li>
+    	</ul>
+	</div>
+			<div>
+				<label>社員ID</label>
+				<input type="number" th:field="*{empId}" />
+			</div>
+			<div>
+				<label>社員名</label>
+				<input type="text" th:field="*{empName}" />
+			</div>
+			<div>
+				<label>年齢</label>
+				<input type="number" th:field="*{ageFrom}" />
+				～
+				<input type="number" th:field="*{ageTo}" />
+			</div>
+			<div>
+				<label>開始日</label>
+				<input type="date" th:field="*{startDateFrom}" placeholder="yyyy/MM/dd" pattern="\\d{4}/\\d{2}/\\d{2}"
+					title="yyyy/MM/dd形式で入力してください（例: 2025/05/10）" />
+				～
+				<input type="date" th:field="*{startDateTo}" placeholder="yyyy/MM/dd" pattern="\\d{4}/\\d{2}/\\d{2}"
+					title="yyyy/MM/dd形式で入力してください（例: 2025/05/10）" />
+			</div>
+			<div>
+				<label>終了日</label>
+				<input type="date" th:field="*{endDateFrom}" placeholder="yyyy/MM/dd" pattern="\\d{4}/\\d{2}/\\d{2}"
+					title="yyyy/MM/dd形式で入力してください（例: 2025/05/10）" />
+				～
+				<input type="date" th:field="*{endDateTo}" placeholder="yyyy/MM/dd" pattern="\\d{4}/\\d{2}/\\d{2}"
+					title="yyyy/MM/dd形式で入力してください（例: 2025/05/10）" />
+			</div>
+
+			 <button type="submit">検索</button>
+<!-- 			<button type="button" onclick="clearForm()">クリア</button> -->
+		</form>
+		
+		<form th:action="@{/search}" method="get" style="display: inline;">
+    		<button type="submit">クリア</button>
+		</form>
+
+		<form th:action="@{/delete}" method="get">
+    <button type="submit" class="btn">削除</button>
+</form>
+</div>
+
+<!-- 検索結果があるときだけ表示 -->
+<div th:if="${resultList != null}">
+	<h3 th:if="${#lists.isEmpty(resultList)}" style="color: red;">該当がありませんでした。</h3>
+			<h3 th:text="'検索結果：' + ${resultList.size()} + ' 件'"></h3>
+	
+	<!-- 結果が1件以上あるときだけテーブルごと表示 -->
+	<div th:if="${!#lists.isEmpty(resultList)}">
+
+		<table border="1" cellpadding="8" cellspacing="0"
+       				style="border-collapse: collapse; width: 100%; text-align: center;">
+   			 <thead style="background-color: #f2f2f2;">
+        		<tr>
+					<!-- <th>選択</th> -->
+					<th>社員ID</th>
+					<th>社員名</th>
+					<th>年齢</th>
+					<th>開始日</th>
+					<th>終了日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp : ${resultList}">
+					<!-- <td>
+						<input type="checkbox" name="selectedIds" th:value="${emp.empId}" />
+					</td> -->
+					<td>
+						<a th:href="@{/update(empId=${emp.empId})}" th:text="${emp.empId}"></a>
+					</td>
+					<td th:text="${emp.empName}"></td>
+					<td th:text="${emp.age != null} ? ${emp.age + '歳'} : ''"></td>
+					<td th:text="${#temporals.format(emp.startDate, 'yyyy/MM/dd')}"></td>
+					<td th:text="${#temporals.format(emp.endDate, 'yyyy/MM/dd')}"></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+		<div layout:fragment="footer" style="text-align: right;">
+		    <p>© 2025 JAVA TeamA</p>
+		</div>
+</body>
+
+</html>
