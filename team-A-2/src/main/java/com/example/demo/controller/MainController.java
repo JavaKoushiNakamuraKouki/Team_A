@@ -9,12 +9,23 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MainController {
     @GetMapping("/main")
-    public String showMainPage() {
+    public String showMainPage(
+    		HttpSession session) {
+    	
+    	if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
+    	
         return "main"; 
         }
     
     @PostMapping("/back")
     public String goBack(HttpSession session) {
+    	
+    	if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
+    	
         String returnUrl = (String) session.getAttribute("returnUrl");
 
         if (returnUrl != null) {

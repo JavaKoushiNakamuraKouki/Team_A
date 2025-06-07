@@ -2,9 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout}">
 
-<head layout:fragment="head">
-    <title layout:fragment="title">社員情報更新(入力)</title>
-</head>
+
 
 <body>
 
@@ -20,6 +18,7 @@
             </div>
 
             <form th:action="@{/update}" th:object="${employeeInfo}" method="post">
+                <input type="hidden" name="returnUrl" value="/update/updateID">
                 <div class="input-container">
                     <div class="form-input">
                         <div>

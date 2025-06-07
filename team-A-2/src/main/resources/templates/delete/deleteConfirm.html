@@ -2,10 +2,6 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout}">
 
-<head layout:fragment="head">
-	<title layout:fragment="title">社員情報削除（確認）</title>
-
-</head>
 
 <body>
 
@@ -17,7 +13,7 @@
 
 		<div class="form-wrapper">
 
-			
+
 			<form th:action="@{/delete/complete}" method="post">
 
 				<div class="input-container">
@@ -26,9 +22,10 @@
 					</div>
 
 					<input type="hidden" name="returnUrl" th:value="${returnUrl}" />
+					<input type="hidden" name="returnUrlForDelete" th:value="${returnUrlForDelete}" />
 
 					<div class="form-input">
-						
+
 						<div th:each="employee : ${employeeList}" class="delete">
 							<div class="input-item">
 								<label>会社ID</label>
@@ -46,31 +43,31 @@
 							こちらを削除します。よろしいですか？
 						</p>
 					</div>
+					
+					
+
+					
 				</div>
 				<div class="form-buttons">
 					<div><input type="submit" value="削除" th:formaction="@{/delete/complete}"></div>
 					<div><input type="submit" value="戻る" formaction="/delete/back" formmethod="post" formnovalidate>
 					</div>
 				</div>
+				
+				<div class="delete-list">
+					<div th:if="${notFoundIds != null and !#lists.isEmpty(notFoundIds)}">
+						<h3>以下のIDは存在しません</h3>
+						<ul>
+							<li th:each="id : ${notFoundIds}" th:text="${id}"></li>
+						</ul>
+					</div>
+				</div>
 
 			</form>
 		</div>
-	</div>
 
-	<!-- <div class="backButton">
-				<form th:action="@{/delete/back}" method="post">
-					<div th:each="employee : ${employeeList}">
-						<input type="hidden" name="empIdList" th:value="${employee.empId}" />
-					</div>
-					<input type="submit" value="戻る" />
-				</form>
-			</div> -->
 
-	<div th:if="${notFoundIds != null and notFoundIds.size() > 0}">
-		<h3>以下のIDは存在しません</h3>
-		<ul>
-			<li th:each="id : ${notFoundIds}" th:text="${id}"></li>
-		</ul>
+
 	</div>
 
 

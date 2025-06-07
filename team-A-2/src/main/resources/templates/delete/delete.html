@@ -2,8 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout}">
 
-<head layout:fragment="head">
-    <title layout:fragment="title">社員情報削除（入力）</title>
+<head>
 
     <script>
         function addInputField() {
@@ -41,10 +40,13 @@
 
     <div layout:fragment="content" class="content">
         <div class="form-wrapper">
-            <div class="error"></div>
+            <div class="error">
+                <p th:if="${errors}" th:each="error : ${errors}" th:text="${error}"></p>
+            </div>
 
             <form th:action="@{/delete}" method="post" class="form">
                 <div class="input-container">
+
                     <div id="input-container" class="form-input">
                         <div th:each="empId, iterStat : ${empIdList}">
                             <div class="input-item">
@@ -69,9 +71,10 @@
 
 
                     <div class="error">
-                        <p th:if="${errors}" th:each="error : ${errors}" th:text="${error}"></p>
+
                     </div>
                 </div>
+				<input type="hidden" name="returnUrl" value="/delete">
                 <div class="form-buttons">
                     <div><input type="submit" value="確認" formaction="/delete/confirm" formmethod="post"> </div>
                     <div><input type="submit" value="戻る" formaction="/back" formmethod="post" formnovalidate></div>

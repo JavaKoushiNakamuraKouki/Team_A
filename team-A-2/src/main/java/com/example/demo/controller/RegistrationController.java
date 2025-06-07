@@ -23,6 +23,11 @@ public class RegistrationController {
 			@RequestParam(name = "returnUrl", required = false) String returnUrl,
             Model model,
             HttpSession session) {
+		
+		if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
+    	
 		if (returnUrl != null) {
 			session.setAttribute("returnUrl", returnUrl); 
 			}
@@ -47,7 +52,10 @@ public class RegistrationController {
 	 }
 	 
 	 @GetMapping("/confirm")
-	 public String registrationConfirmPage(Model model) {
+	 public String registrationConfirmPage(
+			 Model model,
+			 HttpSession session) {
+	    	
 		 model.addAttribute("employeeForm", new EmployeeForm());
 	     return "registration/registrationConfirm";
 	 }
@@ -66,7 +74,14 @@ public class RegistrationController {
 		 }
 	 
 	 @PostMapping("/back")
-	 public String goBackToInput(@ModelAttribute("employeeForm") EmployeeForm form, Model model) {
+	 public String goBackToInput(
+			 @ModelAttribute("employeeForm") EmployeeForm form,
+			 Model model,
+			 HttpSession session) {
+			
+			if (session.getAttribute("loginUser") == null) {
+	            return "redirect:/login";
+	        }
 		    model.addAttribute("employeeForm", form);
 		    return "registration/registration"; 
 		}

@@ -35,6 +35,12 @@ public class EmployeeForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate endDateTo;
 	
+	
+	// 検索結果　表示用
+	private String startDateFormatted;
+
+	private String endDateFormatted;
+	
 
 
 	// --- Getter / Setter ---
@@ -152,6 +158,22 @@ public class EmployeeForm {
 	}
 
 	private List<EmployeeInfo> resultList;
+	
+	public String getStartDateFormatted() {
+	    return startDateFormatted;
+	}
+
+	public void setStartDateFormatted(String startDateFormatted) {
+	    this.startDateFormatted = startDateFormatted;
+	}
+
+	public String getEndDateFormatted() {
+	    return endDateFormatted;
+	}
+
+	public void setEndDateFormatted(String endDateFormatted) {
+	    this.endDateFormatted = endDateFormatted;
+	}
 	
 
 }

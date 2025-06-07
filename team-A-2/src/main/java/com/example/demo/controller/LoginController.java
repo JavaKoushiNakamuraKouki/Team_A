@@ -29,10 +29,6 @@ public class LoginController {
         		@ModelAttribute("employeeInfo") EmployeeInfo employeeInfo,
         		Model model,
         		HttpSession session) {
-      
-
-            System.out.println("受信したID: " + employeeInfo.getEmpId());
-            System.out.println("受信したパス: " + employeeInfo.getPass());
             
             Integer empId = employeeInfo.getEmpId();
             String pass = employeeInfo.getPass();
@@ -75,5 +71,3 @@ public class LoginController {
     	}
 
         }
-    
-

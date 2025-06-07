@@ -277,19 +277,21 @@
     margin: 0 15px;
 }
 
+.delete-list {
+    background-color: aqua;
+    height: 500px;
+}
 
 /* 検索画面 */
 .upper-area {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin: 15px;
-    min-height: 250px;
-    border-bottom: #251E1C solid 0.5px;
+    margin: 10px;
+    min-height: 3em;
 }
 
 .upper-bottun {
-    height: 5vh;
+    width: 40%;
+    margin-top: 10px;
     display: flex;
     align-items: flex-start;
 }
@@ -305,7 +307,33 @@
 }
 
 .upper-bottun a:hover {
-    background-color: #251E1C;
+    background-color: #9E9E9F;
+}
+
+.upper-area .error {
+    display: flex;
+    justify-content: flex-start;
+    width: 60%;
+}
+
+.search .error ul {
+    /* margin-top: 5px; */
+    list-style: none;
+
+}
+
+.search .error li {
+    font-size: 0.9em;
+    color: red;
+}
+
+.middle-area {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 15px;
+    /* min-height: 250px; */
+    border-bottom: #251E1C solid 0.5px;
 }
 
 .search-box {
@@ -376,14 +404,16 @@
     margin: 0 auto;
 }
 
-.column-bottun input {
+.search-button {
     width: 100%;
     height: 3em;
     margin: 10px auto 5px;
     border: 1px solid #DCDCDC;
-    background-color: #FFF;
+    background-color: #fff;
     border-radius: 4px;
 }
+
+
 
 #search-button {
     background-color: #7B8A9C;
@@ -405,19 +435,26 @@
 /* 検索下方画面 */
 .lower-area {
     margin: 15px;
-    height: 30vh;
-    min-height: auto;
-    display: flex;
+    min-height: 30vh;
 }
 
+
 .search-result {
-    width: 85%;
-    margin: 0 10px;
+    width: 100%;
+    display: flex;
 }
 
 .lower-button {
     width: 15%;
 }
+
+.table-wrapper {
+    width: 85%;
+    display: flex;
+    justify-content: center;
+}
+
+
 
 .lower-button div {
     width: 80%;
@@ -438,8 +475,9 @@
 
 table {
     border-collapse: collapse;
-    min-width: 800px;
+    width: 80%;
     border: solid 1.5px #251E1C;
+    margin-bottom: 20px;
 }
 
 th {
@@ -453,7 +491,8 @@ th {
 
 td {
     border: solid 1px #251E1C;
-    padding: 10px 10px;
+    padding: 5px 2px;
     text-align: center;
     background-color: #FFF;
+    size: 0.8em;
 }

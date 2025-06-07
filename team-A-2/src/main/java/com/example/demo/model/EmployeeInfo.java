@@ -23,6 +23,11 @@ public class EmployeeInfo {
 	 
 	 private LocalDate  endDate;
 	 
+	// 表示専用
+	 private String startDateFormatted;
+	 private String endDateFormatted;
+
+	 
 	 
 
 	 public EmployeeInfo() {};	 
@@ -84,6 +89,22 @@ public class EmployeeInfo {
 
 	public void setEndDate(LocalDate  endDate) {
 		this.endDate = endDate;
+	}
+	
+	public String getStartDateFormatted() {
+	    return startDateFormatted;
+	}
+
+	public void setStartDateFormatted(String startDateFormatted) {
+	    this.startDateFormatted = startDateFormatted;
+	}
+
+	public String getEndDateFormatted() {
+	    return endDateFormatted;
+	}
+
+	public void setEndDateFormatted(String endDateFormatted) {
+	    this.endDateFormatted = endDateFormatted;
 	}
 	 
 

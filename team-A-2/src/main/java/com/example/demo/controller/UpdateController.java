@@ -24,7 +24,13 @@ public class UpdateController {
     private EmployeeService employeeService;
 	
     @GetMapping("")
-    public String showUpdatePage(Model model) {
+    public String showUpdatePage(
+    		Model model,
+    		HttpSession session) {
+    	
+    	if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
         if (!model.containsAttribute("employeeInfo")) {
             model.addAttribute("employeeInfo", new EmployeeInfo());
         }
@@ -32,17 +38,16 @@ public class UpdateController {
     }
     
     @PostMapping("")
-    public String getID(@RequestParam("empId") Integer empId, Model model) {
+    public String getID(@RequestParam("empId") Integer empId,Model model,
+    		@RequestParam(value = "returnUrl", required = false) String returnUrl) {
         EmployeeInfo employee = employeeService.findByEmpId(empId);
        
         
         if (employee == null) {
             model.addAttribute("error", "該当する社員が見つかりませんでした。");
-            
             EmployeeInfo emptyEmployee = new EmployeeInfo();
-            emptyEmployee.setEmpId(empId); // 入力値を保持
+            emptyEmployee.setEmpId(empId);
             model.addAttribute("employeeInfo", emptyEmployee);
-
             return "update/updateID";
         }
         
@@ -55,17 +60,41 @@ public class UpdateController {
         form.setEndDate(employee.getEndDate());
         
         model.addAttribute("employeeForm", form);
+        if (returnUrl != null) {
+        	model.addAttribute("returnUrl", returnUrl);
+        }
         return "update/updateInput";
     }
     
     @GetMapping("/input")
     public String showUpdateInputPage(
     	@RequestParam(name = "returnUrl", required = false) String returnUrl,
+    	@RequestParam(name = "inputEmpId", required = false) Integer inputEmpId,
         Model model,
         HttpSession session) {
+    	System.out.println(returnUrl);
+    	System.out.println(inputEmpId);
+    	
 	//戻るボタン用
     if (returnUrl != null) {
         session.setAttribute("returnUrl", returnUrl);
+    }
+    
+    if (inputEmpId != null) {
+        EmployeeInfo employee = employeeService.findByEmpId(inputEmpId);
+        if (employee != null) {
+            EmployeeForm form = new EmployeeForm();
+            form.setEmpId(employee.getEmpId());
+            form.setEmpName(employee.getEmpName());
+            form.setAge(employee.getAge());
+            form.setPass(employee.getPass());
+            form.setStartDate(employee.getStartDate());
+            form.setEndDate(employee.getEndDate());
+
+            model.addAttribute("employeeForm", form);
+        }
+    } else {
+        model.addAttribute("error", "該当する社員が見つかりませんでした。");
     }
     	 return "update/updateInput";
     }
@@ -100,8 +129,19 @@ public class UpdateController {
     @PostMapping("/back")
     public String goBackToInput(
             @ModelAttribute("employeeForm") EmployeeForm form,
+            HttpSession session,
             @RequestParam(value = "prevPage", required = false) String prevPage,
             Model model) {
+    	
+    	if (session.getAttribute("loginUser") == null) {
+            return "redirect:/login";
+        }
+    	
+        String returnUrl = (String) session.getAttribute("returnUrl");
+
+        if("/search".equals(returnUrl)) {
+    		return  "redirect:/search";
+    	}
 
         if ("updateID".equals(prevPage)) {
             EmployeeInfo employeeInfo = new EmployeeInfo();
@@ -109,7 +149,7 @@ public class UpdateController {
             model.addAttribute("employeeInfo", employeeInfo);
             return "update/updateID";
         }
-
+        
         model.addAttribute("employeeForm", form);
         return "update/updateInput";
     }
@@ -122,7 +162,6 @@ public class UpdateController {
 	        employeeService.updateEmployee(employeeForm); 
 	        return "update/updateComplete"; 
 		 }
-    
 
 
     }

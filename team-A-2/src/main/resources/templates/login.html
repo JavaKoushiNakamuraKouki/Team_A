@@ -11,7 +11,7 @@
 
 	<div class="wrapper">
 		<h2>ログイン画面</h2>
-		<!-- <div class=loginForm-wrapper> -->
+
 		<form th:action="@{/login}" th:object="${employeeInfo}" method="post" class="loginForm">
 			<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 			<div class="form-group">
@@ -26,7 +26,6 @@
 		</form>
 	</div>
 
-	<!-- </div> -->
 
 </body>
 

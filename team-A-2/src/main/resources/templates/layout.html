@@ -4,8 +4,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title layout:title-pattern="$LAYOUT_TITLE - MySite">MySite</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<title>社員管理システム</title>
 </head>
 
 <body>
@@ -21,7 +21,6 @@
 				<div class=loginUser>
 					<span th:if="${session.loginUser != null}"
 						th:text="${session.loginUser.empName+' さん'} ">ユーザー名</span>
-					<a th:if="${session.loginUser == null}" th:href="@{/login}">ログイン</a>
 					<!--テスト用 -->
 					<!-- <span th:text="${session.loginUser != null ? session.loginUser.empName + ' さん' : 'ゲスト さん'}"></span> -->
 					<!-- <span>

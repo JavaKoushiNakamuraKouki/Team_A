@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -36,5 +37,31 @@ public interface EmployeeMapper {
 	
 	@Select ("SELECT * FROM employeeInfo")
 	List<EmployeeInfo> selectAll();
+	
+	@Select({
+	    "<script>",
+	    "SELECT * FROM employeeInfo",
+	    "WHERE 1=1",
+	    "<if test='empId != null'>AND empId = #{empId}</if>",
+	    "<if test='empName != null'>AND empName LIKE #{empName}</if>",
+	    "<if test='ageFrom != null'>AND age &gt;= #{ageFrom}</if>",
+	    "<if test='ageTo != null'>AND age &lt;= #{ageTo}</if>",
+	    "<if test='startDateFrom != null'>AND startDate &gt;= #{startDateFrom}</if>",
+	    "<if test='startDateTo != null'>AND startDate &lt;= #{startDateTo}</if>",
+	    "<if test='endDateFrom != null'>AND endDate &gt;= #{endDateFrom}</if>",
+	    "<if test='endDateTo != null'>AND endDate &lt;= #{endDateTo}</if>",
+	    "</script>"
+	})
+	
+	List<EmployeeInfo> searchByCondition(
+	    @Param("empId") Integer empId,
+	    @Param("empName") String empName,
+	    @Param("ageFrom") Integer ageFrom,
+	    @Param("ageTo") Integer ageTo,
+	    @Param("startDateFrom") LocalDate startDateFrom,
+	    @Param("startDateTo") LocalDate startDateTo,
+	    @Param("endDateFrom") LocalDate endDateFrom,
+	    @Param("endDateTo") LocalDate endDateTo
+	);
 	
 }

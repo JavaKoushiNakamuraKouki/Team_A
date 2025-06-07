@@ -78,6 +78,19 @@ public class EmployeeService {
   public List<EmployeeInfo> selectAll(){
 	  return mapper.selectAll();
   }
-    
+  
+  public List<EmployeeInfo> searchByCondition(EmployeeForm form) {
+	    return mapper.searchByCondition(
+	        form.getEmpId(),
+	        (form.getEmpName() != null && !form.getEmpName().isEmpty()) ? "%" + form.getEmpName() + "%" : null,
+	        form.getAgeFrom(),
+	        form.getAgeTo(),
+	        form.getStartDateFrom(),
+	        form.getStartDateTo(),
+	        form.getEndDateFrom(),
+	        form.getEndDateTo()
+	    );
+	}
+  
 }
 

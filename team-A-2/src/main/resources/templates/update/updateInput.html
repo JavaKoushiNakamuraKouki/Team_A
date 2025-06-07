@@ -2,9 +2,6 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout}">
 
-<head layout:fragment="head">
-    <title layout:fragment="title">社員情報更新(入力)</title>
-</head>
 
 <body>
     <div layout:fragment="pageTitle" class="pageTitle">
@@ -18,19 +15,20 @@
                 <p th:if="${error}" th:text="${error}"></p>
             </div>
 
-          
+
             <form id="employeeForm" th:object="${employeeForm}" method="post">
+
                 <div class="input-container">
                     <div class="form-input">
 
-                       
+
                         <div>
                             <label for="empId">会社ID</label>
                             <input type="number" th:field="*{empId}" readonly>
                             <input type="hidden" name="empIdList" th:value="${employeeForm.empId}">
                         </div>
 
-                      
+
                         <div>
                             <label for="empName" class="required">社員名</label>
                             <input type="text" th:field="*{empName}"
@@ -38,13 +36,13 @@
                                 title="漢字、ひらがな、カタカナ（全角）のみ使用できます（スペース不可）" required>
                         </div>
 
-                     
+
                         <div>
                             <label for="age" class="required">年齢</label>
                             <input type="number" th:field="*{age}" required>
                         </div>
 
-                      
+
                         <div>
                             <label for="pass" class="required">パスワード</label>
                             <input type="password" th:field="*{pass}" id="pass"
@@ -52,26 +50,25 @@
                                 required>
                         </div>
 
-                      
+
                         <div>
                             <label for="passCon" class="required">パスワード確認</label>
                             <input type="password" th:field="*{passCon}" required>
                         </div>
 
-             
+
                         <div>
                             <label for="startDate" class="required">開始日</label>
                             <input type="date" th:field="*{startDate}" placeholder="yyyy/MM/dd"
                                 pattern="\\d{4}/\\d{2}/\\d{2}" title="yyyy/MM/dd形式で入力してください（例: 2025/05/10）" required>
                         </div>
 
-                       
+
                         <div>
                             <label for="endDate">終了日</label>
                             <input type="date" th:field="*{endDate}" placeholder="yyyy/MM/dd"
                                 pattern="\\d{4}/\\d{2}/\\d{2}" title="yyyy/MM/dd形式で入力してください（例: 2025/05/10）">
                         </div>
-                        <input type="hidden" name="returnUrl" value="/update/updateInput" />
                     </div>
 
 
@@ -79,6 +76,8 @@
 
                     </div>
                 </div>
+                <input type="hidden" name="returnUrl" th:value="${returnUrl}" />
+				<input type="hidden" name="returnUrlForDelete" value="/update" />
 
 
                 <div class="form-buttons">
