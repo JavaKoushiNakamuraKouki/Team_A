@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+
+<head layout:fragment="head">
+	<title layout:fragment="title">社員情報更新（確認）</title>
+</head>
+
+<body>
+
+	<div layout:fragment="pageTitle" div class="pageTitle">
+		<h2>社員情報更新（確認）</h2>
+	</div>
+
+	<div layout:fragment="content" class="content">
+
+		<div class="form-wrapper">
+			<div class="error">
+				<p th:if="${error}" th:text="${error}"></p>
+			</div>
+			<form th:action="@{/update/complete}" th:object="${employeeForm}" method="post" class="form">
+				<div class="input-container">
+					<div class="form-input">
+
+						<div>
+							<label for="empID">会社ID</label>
+							<input type="number" th:field="*{empId}" readonly>
+						</div>
+
+						<div>
+							<label for="empName">社員名</label>
+							<input type="text" th:field="*{empName}" readonly>
+						</div>
+
+						<div>
+							<label for="age">年齢</label>
+							<input type="number" th:field="*{age}" readonly>
+						</div>
+
+						<div>
+							<label for="pass">パスワード</label>
+							<input type="password" th:value="*{pass}" readonly>
+							<input type="hidden" th:field="*{pass}">
+						</div>
+
+						<div>
+							<label for="startDate">開始日</label>
+							<input type="date" th:field="*{startDate}" readonly>
+						</div>
+
+						<div>
+							<label for="endDate">終了日</label>
+							<input type="date" th:field="*{endDate}" readonly>
+						</div>
+
+						
+
+
+					</div>
+
+					<div class="input-msg">
+						<p>こちらで更新します。よろしいですか？</p>
+					</div>
+
+				</div>
+
+				<div class="form-buttons">
+					<div><input type="submit" value="更新" th:formaction="@{/update/complete}"></div>
+					<div><input type="submit" value="戻る" formaction="/update/back" formmethod="post" formnovalidate>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</body>
+
+</html>
